@@ -1,0 +1,107 @@
+.icon-btn {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f8f9fa;
+  color: #444;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, opacity 0.15s;
+}
+
+.icon-btn:hover:not(:disabled) {
+  background: #e9ecef;
+  border-color: #aaa;
+  color: #111;
+}
+
+.icon-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.icon-btn svg {
+  pointer-events: none;
+  display: block;
+}
+
+/* ── Tooltip (via ::after) ── */
+.icon-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c3e50;
+  color: #fff;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 99999;
+}
+
+.icon-btn::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #2c3e50;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 99999;
+}
+
+.icon-btn:hover::after,
+.icon-btn:hover::before {
+  opacity: 1;
+}
+
+/* ── Color variants ── */
+.icon-btn.icon-btn-green {
+  background: #27ae60; color: white; border-color: #219150;
+}
+.icon-btn.icon-btn-green:hover:not(:disabled) {
+  background: #219150; border-color: #1a7a40;
+}
+
+.icon-btn.icon-btn-danger {
+  background: #e74c3c; color: white; border-color: #c0392b;
+}
+.icon-btn.icon-btn-danger:hover:not(:disabled) {
+  background: #c0392b; border-color: #a93226;
+}
+
+.icon-btn.icon-btn-orange {
+  background: #f39c12; color: white; border-color: #e67e22;
+}
+.icon-btn.icon-btn-orange:hover:not(:disabled) {
+  background: #e67e22; border-color: #d35400;
+}
+
+.icon-btn.icon-btn-primary {
+  background: #3498db; color: white; border-color: #2980b9;
+}
+.icon-btn.icon-btn-primary:hover:not(:disabled) {
+  background: #2980b9; border-color: #2471a3;
+}
+
+.icon-btn-scheduler {
+  background: #2980b9; color: #fff; border-color: #2475a8;
+}
+.icon-btn-scheduler:hover {
+  background: #2475a8;
+}

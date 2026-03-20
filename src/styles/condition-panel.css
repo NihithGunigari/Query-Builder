@@ -1,0 +1,322 @@
+.condition-panel {
+  position: relative;
+  background: #f4f6fb;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-left: 1px solid #dde3ed;
+}
+
+.condition-resize-handle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: ew-resize;
+  background: transparent;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.condition-resize-handle:hover {
+  background: #3b82f6;
+}
+
+.condition-panel > div[style] {
+  scrollbar-width: thin;
+  scrollbar-color: #c8d0de transparent;
+}
+
+.condition-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.condition-panel-empty {
+  padding: 40px 16px;
+  color: #94a3b8;
+  text-align: center;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, #dde3ed 0%, transparent 100%);
+  margin: 4px 0;
+}
+
+/* ── Section wrappers ── */
+.cp-section {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 4px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.cp-section h4 {
+  margin: 0;
+  padding: 6px 10px 6px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Accent colors per section */
+.cp-section--where   h4 { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+.cp-section--agg     h4 { background: linear-gradient(90deg, #7c3aed, #9d50e0); }
+.cp-section--group   h4 { background: linear-gradient(90deg, #059669, #10b981); }
+.cp-section--having  h4 { background: linear-gradient(90deg, #d97706, #f59e0b); }
+.cp-section--order   h4 { background: linear-gradient(90deg, #0e7490, #06b6d4); }
+
+/* Section content padding */
+.cp-section .where-builder,
+.cp-section > .panel-item-row,
+.cp-section > button.add-condition-btn {
+  padding: 6px 8px;
+}
+
+/* ── Panel rows ── */
+.cp-section .panel-item-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 8px;
+  margin: 4px 8px;
+  background: #f8fafc;
+  border: 1px solid #e8edf5;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.cp-section .panel-item-row:hover {
+  background: #f1f5fd;
+  border-color: #c3d3f0;
+}
+
+/* Left-accent stripes */
+.cp-section--where  .panel-item-row { border-left: 3px solid #3b82f6; }
+.cp-section--agg    .panel-item-row { border-left: 3px solid #9d50e0; }
+.cp-section--group  .panel-item-row { border-left: 3px solid #10b981; }
+.cp-section--having .panel-item-row { border-left: 3px solid #f59e0b; }
+.cp-section--order  .panel-item-row { border-left: 3px solid #06b6d4; }
+
+/* Logic select (AND/OR pill) */
+.cp-section .panel-item-row .logic-select {
+  flex: 0 0 46px;
+  width: 46px !important;
+  font-size: 9px !important;
+  font-weight: 800;
+  height: 20px;
+  padding: 0 2px !important;
+  background: #eef2ff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.cp-section .panel-item-row > div[style*="65px"] {
+  flex: 0 0 46px !important;
+  width: 46px !important;
+  min-width: 46px !important;
+}
+
+/* Table selector */
+.cp-section .panel-item-row > select:not(.logic-select):first-of-type,
+.cp-section--where  .panel-item-row > select[style*="90px"],
+.cp-section--having .panel-item-row > select[style*="90px"],
+.cp-section--order  .panel-item-row > select[style*="90px"] {
+  flex: 1 0 calc(100% - 56px) !important;
+  width: auto !important;
+  min-width: 0;
+  font-size: 10px !important;
+  height: 20px;
+  padding: 0 4px !important;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px;
+  color: #334155;
+}
+
+/* Unified compact inputs/selects */
+.cp-section .panel-item-row select,
+.cp-section .panel-item-row input[type="text"] {
+  font-size: 10px;
+  height: 22px;
+  padding: 0 4px;
+  border: 1px solid #dde3ed;
+  border-radius: 3px;
+  background: #fff;
+  color: #334155;
+  transition: border-color 0.15s;
+}
+
+.cp-section .panel-item-row select:focus,
+.cp-section .panel-item-row input[type="text"]:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Func selects */
+.cp-section--agg    .panel-item-row > select:first-child,
+.cp-section--having .panel-item-row > select[style*="70px"],
+.cp-section--agg    .panel-item-row > select[style*="80px"] {
+  width: 62px !important;
+  font-weight: 700;
+  background: #faf5ff;
+  color: #7c3aed;
+  border-color: #ddd6fe;
+  font-size: 9px !important;
+  text-transform: uppercase;
+}
+
+/* Operator select */
+.cp-section .panel-item-row > select[style*="60px"],
+.cp-section .panel-item-row > select[style*="80px"]:not(:first-child) {
+  width: 58px !important;
+}
+
+/* Alias input */
+.cp-section--agg .panel-item-row > input[style*="80px"] {
+  width: 58px !important;
+  font-style: italic;
+}
+
+/* Value inputs */
+.cp-section .panel-item-row > input[style*="flex"],
+.cp-section .panel-item-row > input:not([style*="80px"]) {
+  flex: 1;
+  min-width: 50px;
+}
+
+/* Bracket buttons */
+.cp-section .bracket-btn {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 11px;
+  padding: 0;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cp-section .bracket-btn.active {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
+  font-weight: 900;
+}
+
+/* Remove button */
+.cp-section .panel-remove-btn {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.cp-section .panel-remove-btn:hover {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+/* SearchableSelect inside panel */
+.cp-section .searchable-select-wrapper {
+  flex: 1;
+  min-width: 70px;
+}
+
+.cp-section .tiny-search {
+  font-size: 10px !important;
+  padding: 2px 5px !important;
+  border-color: #e2e8f0;
+}
+
+.cp-section .searchable-select-wrapper select {
+  font-size: 10px !important;
+  height: 44px;
+}
+
+/* Add buttons */
+.cp-section .add-condition-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: calc(100% - 16px);
+  margin: 4px 8px 8px;
+  padding: 5px 0;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px dashed #c8d0de;
+  background: transparent;
+  color: #64748b;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.cp-section .add-condition-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #334155;
+}
+
+.cp-section--where  .add-condition-btn:hover { border-color: #3b82f6; color: #2563eb; background: #eff6ff; }
+.cp-section--agg    .add-condition-btn:hover { border-color: #9d50e0; color: #7c3aed; background: #faf5ff; }
+.cp-section--group  .add-condition-btn:hover { border-color: #10b981; color: #059669; background: #f0fdf4; }
+.cp-section--having .add-condition-btn:hover { border-color: #f59e0b; color: #d97706; background: #fffbeb; }
+.cp-section--order  .add-condition-btn:hover { border-color: #06b6d4; color: #0e7490; background: #ecfeff; }
+
+/* Group By select */
+.cp-section--group .panel-item-row > div[style*="flex: 1"] > select,
+.cp-section--group .panel-item-row > div > select {
+  font-size: 10px;
+  height: 22px;
+  padding: 0 4px;
+}
+
+/* Italic hint texts */
+.cp-section > div[style*="italic"] {
+  font-size: 10px !important;
+  color: #94a3b8 !important;
+  padding: 3px 10px 0;
+  margin: 0 !important;
+  line-height: 1.4;
+}
+
+/* Order By direction select */
+.cp-section--order .panel-item-row > select[value="ASC"],
+.cp-section--order .panel-item-row > select[value="DESC"],
+.cp-section--order .panel-item-row > select:last-of-type {
+  width: 52px !important;
+}

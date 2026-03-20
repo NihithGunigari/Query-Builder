@@ -1,0 +1,20 @@
+.workspace-bar {
+  height: 45px;
+  border-bottom: 1px solid #ccc;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.workspace-input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.center-panel {
+  background: #fff;
+}
