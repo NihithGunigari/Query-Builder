@@ -1,17 +1,5 @@
 # Visual Query Builder — Refactored Modular Structure
 
-## Why This Refactoring?
-
-| Before | After |
-|--------|-------|
-| `app.js` — 4,021 lines (everything in one file) | `app.js` — 416 lines (slim coordinator) |
-| `app.py` — 530 lines (all routes in one file) | `app.py` — 54 lines (mounts 4 routers) |
-| `app.css` — 1,506 lines (one massive stylesheet) | `app.css` — 19 lines (imports 10 partials) |
-
-Every bug now lives in a **named, focused file** you can find immediately.
-
----
-
 ## Frontend Structure (`frontend/src/`)
 
 ### Entry Point
