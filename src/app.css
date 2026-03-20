@@ -1,0 +1,10 @@
+@import "./styles/base.css";
+@import "./styles/header.css";
+@import "./styles/sidebar.css";
+@import "./styles/workspace.css";
+@import "./styles/icon-buttons.css";
+@import "./styles/canvas.css";
+@import "./styles/cards.css";
+@import "./styles/query-panel.css";
+@import "./styles/condition-panel.css";
+@import "./styles/scheduler.css";
